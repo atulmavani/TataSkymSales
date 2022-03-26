@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".fragment.Homefragment"
+        android:background="@color/white"
+        android:clickable="true">
+
+    <LinearLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+            <TextView android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/darkgray"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="Mobile NO."/>
+            <TextView android:layout_width="0dp"
+                    android:layout_weight=".8"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:textColor="@color/darkgray"
+                    android:textStyle="bold"
+                    android:text="Pin"/>
+            <TextView android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:textColor="@color/darkgray"
+                    android:textStyle="bold"
+                    android:text="Sim Login"/>
+            <TextView android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:textSize="@dimen/_12sdp"/>
+        </LinearLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/swiperefresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclrer_sim_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+    <RelativeLayout
+            android:id="@+id/home_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_light"
+            android:clickable="true"
+            android:visibility="gone"
+            android:gravity="center">
+
+        <com.zplus.tataskymsales.loader.MKLoader
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:mk_type="Sharingan" />
+    </RelativeLayout>
+
+</FrameLayout>

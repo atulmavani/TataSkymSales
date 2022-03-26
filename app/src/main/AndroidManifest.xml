@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.mavani.atul.setupproject">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.zplus.tataskymsales">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
             android:allowBackup="true"
@@ -14,27 +18,46 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.MainActivity">
+        <activity
+                android:name="com.zplus.tataskymsales.activity.DashBoardActivity"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+                android:name="com.zplus.tataskymsales.activity.LoginActivity"
+                android:theme="@style/FullScreenTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- FOR FCM PUSH-NOTIFICATION -->
-        <service android:name=".notification.MyFirebaseMessagingService">
+        <activity android:name="com.zplus.tataskymsales.activity.MainActivity"></activity>
+        <service
+                android:name="com.zplus.tataskymsales.service.RechargeService"
+                android:enabled="true"
+                android:exported="true" />
+        <receiver android:name="com.zplus.tataskymsales.reciever.NetworkChangeReceiver">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action
+                        android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                        tools:ignore="BatteryLife" />
             </intent-filter>
-        </service>
-        <service android:name=".notification.FirebaseInstanceIDService">
+        </receiver>
+        <receiver android:name="com.zplus.tataskymsales.service.BootCompletedIntentReceiver">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </service>
-        <!-- END FOR FCM PUSH-NOTIFICATION -->
+        </receiver>
 
+        <receiver
+                android:name="com.zplus.tataskymsales.service.Restarter"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="restartservice" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
